@@ -25,6 +25,7 @@ function BootstrapController($scope, $growl) {
 
         $scope.pessoas.push($scope.pessoa);
         $scope.limpar();
+        // test commit
     }
 
     $scope.excluir = function() {
