@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="bower_components/angularjs/angular-csp.css"/>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"/>
+    <link rel="stylesheet" href="app/css/bootstrap/main.css"/>
+    <link rel="stylesheet" href="bower_components/angular-ui-growl/css/growl.css"/>
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angularjs/angular.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-ui-growl/src/growl.js"></script>
+    
+    <script src="app/js/app-config-bootstrap.js"></script>
+    <script src="app/js/bootstrap-controller.js"></script>
+</head>
+<body ng-app="HelloWorldApp">
+
+<div class="container" ng-controller="BootstrapController">
+
+    <form novalidate name="myForm">
+
+        <div class="row">
+            <div class="form-group col-sm-3" ng-class="{ 'has-error': (myForm.itNome.$invalid && !myForm.$pristine) }">
+                <label for="itNome">Nome</label>
+                <input type="text"
+                       class="form-control"
+                       id="itNome"
+                       name="itNome"
+                       ng-model="pessoa.nome"
+                       ng-minlength="5"
+                       ng-maxlength="50"
+                       required />
+                <div class="help-block" ng-messages="myForm.itNome.$error" ng-if="!myForm.$pristine">
+                    <p ng-message="minlength">Campo muito curto</p>
+                    <p ng-message="maxlength">Campo muito longo</p>
+                    <p ng-message="required">Campo obrigatório</p>
+                </div>
+            </div>
+
+            <div class="form-group col-sm-3" ng-class="{ 'has-error': (myForm.itSobrenome.$invalid && !myForm.$pristine) }">
+                <label for="itSobrenome">Sobrenome</label>
+                <input type="text"
+                       class="form-control"
+                       id="itSobrenome"
+                       name="itSobrenome"
+                       ng-minlength="5"
+                       ng-maxlength="50"
+                       ng-model="pessoa.sobrenome"/>
+                <script type="text/ng-template" id="error-message">
+                    <p ng-message="minlength">Campo muito curto</p>
+                    <p ng-message="maxlength">Campo muito longo</p>
+                    <p ng-message="required">Campo obrigatório</p>
+                    <p ng-message="email">E-mail inválido</p>
+                </script>
+                <div ng-messages="myForm.itSobrenome.$error">
+                    <div ng-message-include="error-message"></div>
+                </div>
+            </div>
+
+            <div class="form-group col-sm-3" ng-class="{ 'has-error': (myForm.itNascimento.$invalid && !myForm.$pristine) }">
+                <label for="itNascimento">Nascimento</label>
+                <input type="date"
+                       class="form-control"
+                       id="itNascimento"
+                       name="itNascimento"
+                       required
+                       ng-model="pessoa.nascimento"/>
+                <div ng-messages="myForm.itNascimento.$error">
+                    <div ng-messages-include="mensagens.html"></div>
+                </div>
+            </div>
+
+            <div class="form-group col-sm-3" ng-class="{ 'has-error': (myForm.itSexo.$invalid && !myForm.$pristine) }">
+                <label for="itSexo">Sexo</label>
+                <select class="form-control"
+                       id="itSexo"
+                       name="itSexo"
+                       ng-model="pessoa.sexo">
+                    <option value="M">Masculino</option>
+                    <option value="F">Feminino</option>
+                </select>
+            </div>
+
+        </div>
+
+        Pristine: {{ myForm.$pristine }}
+        <br>
+        Dirty: {{ myForm.$dirty }}
+    </form>
+
+    <nav class="navbar navbar-default" style="padding-left: 10px;">
+        <button type="submit" class="btn btn-primary navbar-btn" ng-click="salvar()">
+            <i class="fa fa-save"></i>
+            Salvar
+        </button>
+
+        <button type="button" class="btn btn-warning navbar-btn" ng-click="limpar()">
+            <i class="fa fa-eraser"></i>
+            Limpar
+        </button>
+
+        <button type="button" class="btn btn-danger navbar-btn" ng-click="excluir()">
+            <i class="fa fa-trash-o"></i>
+            Excluir
+        </button>
+    </nav>
+
+    <table class="table">
+        <thead>
+            <th>Nome</th>
+            <th>Sobrenome</th>
+            <th>Nascimento</th>
+            <th>Sexo</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="obj in pessoas track by $index" ng-click="editar(obj)">
+                <td ng-bind="$index"></td>
+                <td ng-bind="::obj.nome"></td>
+                <td ng-bind="::obj.sobrenome"></td>
+                <td ng-bind="::obj.nascimento | date:'dd/MM/yyyy'"></td>
+                <td ng-bind="::obj.sexo"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-3"></div>
+        <div class="col-sm-3"></div>
+    </div>
+</div>
+
+</body>
+</html>
