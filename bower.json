@@ -15,7 +15,8 @@
     "font-awesome": "~4.4.0",
     "angular-messages": "~1.4.4",
     "angular-ui-growl": "~0.0.1",
-    "angular-ui-grid": "~3.0.4"
+    "angular-ui-grid": "~3.0.4",
+    "angular-material": "~0.10.1"
   },
   "resolutions": {
     "angular": "1.4.4"
