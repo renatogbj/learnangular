@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="bower_components/angularjs/angular-csp.css"/>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"/>
+    <link rel="stylesheet" href="app/css/bootstrap/main.css"/>
+    <link rel="stylesheet" href="bower_components/angular-ui-growl/css/growl.css"/>
+    <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.css"/>
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css"/>
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angularjs/angular.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-ui-growl/src/growl.js"></script>
+    <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+
+    <script src="app/js/app-config-bootstrap.js"></script>
+    <script src="app/js/bootstrap-controller.js"></script>
+</head>
+<body ng-app="HelloWorldApp">
+
+<div class="container" ng-controller="BootstrapController">
+
+    <form novalidate name="myForm">
+
+        <div class="row">
+            <div class="form-group col-sm-3" ng-class="{ 'has-error': (myForm.itNome.$invalid && !myForm.$pristine) }">
+                <label for="itNome">Nome</label>
+                <input type="text"
+                       class="form-control"
+                       id="itNome"
+                       name="itNome"
+                       ng-model="pessoa.nome"
+                       ng-minlength="5"
+                       ng-maxlength="50"
+                       required />
+                <div class="help-block" ng-messages="myForm.itNome.$error" ng-if="!myForm.$pristine">
+                    <p ng-message="minlength">Campo muito curto</p>
+                    <p ng-message="maxlength">Campo muito longo</p>
+                    <p ng-message="required">Campo obrigatório</p>
+                </div>
+            </div>
+
+            <div class="form-group col-sm-3" ng-class="{ 'has-error': (myForm.itSobrenome.$invalid && !myForm.$pristine) }">
+                <label for="itSobrenome">Sobrenome</label>
+                <input type="text"
+                       class="form-control"
+                       id="itSobrenome"
+                       name="itSobrenome"
+                       ng-model="pessoa.sobrenome"/>
+            </div>
+
+            <div class="form-group col-sm-3">
+                <label for="cor">Cor</label>
+                <input type="text"
+                       class="form-control"
+                       id="cor"
+                       name="cor"
+                       ng-model="pessoa.cor"/>
+            </div>
+
+            <div class="form-group col-sm-2" ng-class="{ 'has-error': (myForm.itNascimento.$invalid && !myForm.$pristine) }">
+                <label for="itNascimento">Nascimento</label>
+                <input type="date"
+                       class="form-control"
+                       id="itNascimento"
+                       name="itNascimento"
+                       ng-model="pessoa.nascimento"/>
+            </div>
+
+            <div class="form-group col-sm-1" ng-class="{ 'has-error': (myForm.itSexo.$invalid && !myForm.$pristine) }">
+                <label for="itSexo">Sexo</label>
+                <select class="form-control"
+                        id="itSexo"
+                        name="itSexo"
+                        ng-model="pessoa.sexo">
+                    <option value="M">M</option>
+                    <option value="F">F</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <md-input-container flex class="col-sm-3">
+                <label>Nome</label>
+                <input ng-model="pessoa.nome">
+            </md-input-container>
+
+            <md-input-container flex class="col-sm-3">
+                <label>Sobrenome</label>
+                <input ng-model="pessoa.sobrenome">
+            </md-input-container>
+
+            <md-input-container flex class="col-sm-3">
+                <label>Cor</label>
+                <input ng-model="pessoa.cor">
+            </md-input-container>
+
+            <md-input-container flex class="col-sm-2">
+                <label>Nascimento</label>
+                <input type="date" ng-model="pessoa.nascimento">
+            </md-input-container>
+
+            <md-input-container flex class="col-sm-1">
+                <label>Sexo</label>
+                <md-select ng-model="pessoa.sexo">
+                    <md-option>M</md-option>
+                    <md-option>F</md-option>
+                </md-select>
+            </md-input-container>
+
+        </div>
+
+    </form>
+
+    <nav class="navbar navbar-default" style="padding-left: 10px;">
+        <md-button type="submit" class="btn btn-primary navbar-btn" ng-click="salvar()">
+            <i class="fa fa-save"></i>
+            Salvar
+        </md-button>
+
+        <md-button type="button" class="btn btn-warning navbar-btn" ng-click="limpar()">
+            <i class="fa fa-eraser"></i>
+            Limpar
+        </md-button>
+
+        <md-button type="button" class="btn btn-danger navbar-btn" ng-click="excluir()">
+            <i class="fa fa-trash-o"></i>
+            Excluir
+        </md-button>
+    </nav>
+
+    <div ui-grid="gridOptions"
+         ui-grid-resize-columns
+         ui-grid-selection>
+    </div>
+
+</div>
+
+</body>
+</html>
