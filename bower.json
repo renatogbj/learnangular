@@ -22,5 +22,18 @@
   },
   "resolutions": {
     "angular": "1.4.4"
+  },
+  "overrides": {
+    "font-awesome": {
+      "main": [
+        "css/font-awesome.css"
+      ]
+    },
+    "angular-ui-growl": {
+      "main": [
+        "css/growl.css",
+        "src/growl.js"
+      ]
+    }
   }
 }

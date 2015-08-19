@@ -3,7 +3,7 @@
  */
 angular.module('HelloWorldApp',
     ['ngMessages', 'ui.growl', 'ui.grid', 'ui.grid.resizeColumns', 'ui.grid.selection', 'ngMaterial', 'ui.router',
-    'oc.lazyLoad'])
+    'oc.lazyLoad', 'oobj-directives'])
         .config(config);
 
 config.$inject = ['$stateProvider', '$urlRouterProvider'];
